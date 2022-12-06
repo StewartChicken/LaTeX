@@ -1,0 +1,346 @@
+% This is the main.tex This is where your writ ting will actually occur. In addition you will use this to display pictures, make tables, and format your paper. You should ONLY change things in this document.
+
+% Calls up multiple packages that tell the computer how you want to format the text and what neat tools you want to include so that you can use.
+%\documentclass{aiaa-tc}
+\documentclass[12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{lettrine}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{gensymb}
+\usepackage{listings}
+\usepackage{multicol}
+\usepackage{amsmath}
+\usepackage{fancyvrb}
+\usepackage{verbatim}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{mathdesign}
+\usepackage{txfonts}
+\usepackage{mathrsfs}
+\usepackage[justification=centering]{caption}
+\usepackage{subcaption}
+\usepackage{mdsymbol}
+\usepackage{wrapfig}
+\makeatletter
+\def\mycatheader#1{\multicolumn{\tabu@nbcols}{c}{#1}}
+\makeatother
+\pagestyle{fancy}
+\usepackage{mcode}
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+% Substitute in your class and semester here!
+\lfoot{ECEN 1400}
+\rfoot{Fall 2022}
+ 
+
+
+% Defines that all Images are in the folder "images/" so that we don't have to type it repeatedly
+\graphicspath{ {images/} }
+
+% Catchy Name of your Project followed by 
+\title{Automated Dice Roller}
+
+% Names in Alphabetical Order by First Name Go in Here 
+\author{
+  Arthur Street \footnote{Arthur Street},
+  Evan Poon \footnote{Evan Poon},
+  Peter Dessev \footnote{Peter Dessev},
+  Trace Rindal \footnote{Trace Rindal}\\
+    {\normalsize\itshape
+   Lecture Section 500, ECEN 1400, \today}\\
+ }
+
+% Tells the Document you are ready to start typing
+\begin{document}
+
+% Explains to the document to put in the Title, Names  onto a cover page
+\maketitle
+
+% This should be a 200 word summary of the paper
+\begin{abstract}
+ The Automated Dice Roller will roll dice for the user. The device consists of two towers mounted to a wide base, with a freely moving axle connected near the top of the towers. Centered on this axle is a large, clear enclosure which will house the dice. One leg consists of a stepper motor connected to a pulley system that will rotate the axle. The stepper motor will be controlled through a driver connected to an Arduino Nano, and powered by two rechargeable lithium ion batteries. The device will begin "rolling" through user inputs one of two ways. A large button mounted to the base of the device, and an aux port that is compatible with the devices used by individuals with disabilities. An input from either option will result in one "cycle" of the dice roll.
+\end{abstract}
+
+% This ends the Title and Abstract page and lets you move on to the real report!
+\newpage
+
+% This will make a Table of contents that Updates Automatically!
+\tableofcontents
+
+% This ensures it stays on its own page
+\newpage
+
+% Begin a New Overarching topic
+\section{Introduction}
+
+% Begin a Sub-Topic
+\subsection{Project Overview}
+\textit{The goal and mission of your group should be in here. In addition pertinent information regarding your client will be very important. You should be explaining who they are before you explain what they need you to do! Be \textbf{very} descriptive.\\\\
+This project hopes to implement a “dice shaker” mechanism to increase the accessibility of dice and dice rolling.}
+
+The ultimate goal of this project is to create a device that allows users to easily roll any number of dice by using a joystick and a push button. Small objects like dice can be difficult to wield for individuals who struggle with dexterity. Shaking or “rolling” dice can also pose a challenge for those who have difficulties with fine motor movement. In an effort to help, we've decided to create this “dice roller” project in the hopes of removing the necessity for fine motor control when rolling dice. \\
+\indent{The} dice rolling portion of the device will be a cube made of acrylic which will allow the user to see the dice rolling action within. This box will be elevated roughly four to six inches off of the resting surface and will be attached to two support legs on opposing sides. One of these legs will house a stepper motor which will continually spin the box thereby acting as a "roller" for the dice. The motor will connect to a steel axle (via a gearbox) that attaches to the outside wall of the box. A second steel axle connects the support leg to the box on the opposite side (attached with a ball bearing). \\
+\indent{All} of the electronics will be housed within the base of the shaker’s structure. These electronics will include an Arduino Nano, a stepper motor driver, and the control push button which controls the entire mechanism of the box. 
+When the button is  pressed down once, the dice roller carries out a default roll function rolling the motor continuously for one complete revolution. When the button is held down, however, the box continues to spin for the entire duration that the button is pressed. When the button is released, the bottom face of the cube realigns itself to be parallel to the table/surface below. To add/remove dice from the shaker, one face of the cube will be modified with a latch and a handle to allow access to the shaker’s internal chamber.  
+
+
+\subsection{Team Members}
+\textbf{Arthur Street} - Assembly/Materials Manager\\
+\textbf{Evan Poon} - Programming/Software Design\\
+\textbf{Trace Rindal} - CAD/Structural Design\\
+\textbf{Peter Dessev} - Circuit Design/Electrical\\
+
+
+% Begin Next Sub-topic
+\subsection{Design Requirements}
+\\
+\indent{The} most vital design requirement for this project will be ease of access for all individuals. Anyone with any degree of hand dexterity should be able to use the device. In order to achieve this, the "roll" mechanism will be designed as a large, ergonomic, easy to access button directly in front of the dice enclosure. Furthermore, an aux port will be implemented on the front of the device so that individuals can use their own custom buttons to interact with the device. \\
+\indent{With} regards to the actual design of the project, a major design requirement is the actual rolling of the dice within their enclosure. The dice are housed within a central box which composes the "rolling" portion of the mechanism. The enclosure will spin about an axle effectively "rolling" the dice within.
+\indent{The} device will also need to be aesthetically pleasing to the user. This means that no wires or underlying circuitry will be visible to any individual who uses the mechanism. Electrical components and wiring will be hidden within the base and the supportive towers on either side of the dice enclosure. 
+
+\indent{Another} primary requirement for the design is a clear enclosure that allows the users to view the dice within. In order to achieve this, clear acrylic will be used to construct the box that houses the dice. This is important because if the dice within cannot be seen, the purpose of the device is defeated. The final state of the rolled dice must be visible. 
+
+\indent{A} final design requirement for the device is the accessibility of the enclosure's internals. A user should be able to access the inside of the box if they wish to add more dice, take some out, or switch the type of dice being used. 
+
+
+% Begin a new Overarching topic
+\newpage
+\section{Design Iteration}
+
+% Sub-Topic 1
+\subsection{Initial Ideas}
+There were many initial solution proposals, however, the design that was ultimately chosen was the one that best matched the given design requirements. 
+\indent{The} first design involves a 2 step process with a sweeper mechanism to clean up the dice. The device would first "shake" in an internal component before being thrown outside onto a walled platform which would easily display the results of the dice for the users. Then, and arm would come out from one of the walls and "sweep" the dice back into the internal mechanism with a funnel system. The initial sketch can be seen in \ref{fig:sweeper sketch}.
+\begin{figure}[H]
+% Puts your image in the center of the page, multiple other justifications are able to be done
+\centering
+    % Actually include the graphic
+    \includegraphics[width=6cm,height=6cm]{sweeper.PNG}
+    % CAPTIONS ARE VERY IMPORTANT NO FLOATING PICTURES
+    \caption{Initial sketch from brainstorming phase}
+    % This is how we can tell the code what picture we are referencing.
+    \label{fig:sweeper sketch}
+\end{figure}
+\indent{The} second design ultimately ended up being the final design. The core of this design is the floating clear enclosure that houses the dice. This enclosure is mounted on an axle that goes through the center of the enclosure and is connected on either side to a supporting tower. The core of these towers is a spine that is mounted to a baseboard, and through these spines all of the components are supported. The spines are two thin structures that are then covered by the external part of the towers, two separate pieces that hide and protect all the internal circuitry. Part of the base will also house a button that is what controls the spinning or "rolling" motion of the dice. As seen in Figure 2 below, this secondary design is quite similar to the final project.
+
+\begin{figure}[H]
+% Puts your image in the center of the page, multiple other justifications are able to be done
+\centering
+    % Actually include the graphic
+    \includegraphics[width=8cm,height=6cm]{2.png}
+    % CAPTIONS ARE VERY IMPORTANT NO FLOATING PICTURES
+    \caption{Another design from the initial brainstorming phase. This very closely resembles the final product}
+    % This is how we can tell the code what picture we are referencing.
+    \label{fig:floating sketch}
+\end{figure}
+
+
+
+% If you need to utilize a list I have included one here
+\subsection{Materials}
+Initial ideas for materials included:
+\begin{itemize}
+    \item PLA for 3D-printed components
+    \item Acrylic for see through components
+    \item Wood for structural support and larger components
+    \item Aluminum for the axle (relatively lighter metal)
+\end{itemize}
+
+% New Sub-Topic
+\subsection{Design Issues}
+The initial design (see Figure \ref{fig:sweeper sketch}) had several flaws, drawing away from the simplicity and ease of access that the final product wanted to be. While it was never built and therefore cannot be confirmed, here are some reasons for the groups decision to pick the design seen in Figure \ref{fig:floating sketch}.
+\begin{itemize}
+    \item The sweeping required a separate motor and component for the arm
+    \item The open air design is at higher risk of failure and danger to the user should the dice fly out
+    \item The complexity stemming from the two part internal and external parts was not intuitive
+    \item Very lopsided design, would be awkward to carry or transport
+\end{itemize}
+
+% New Topic
+\newpage
+\section{Modeling}
+
+% New Sub-Topic
+\subsection{Initial Model}
+Before the exact measurements were known, a quick render was put together to visualize what the final product may look like.
+\begin{figure}[H]
+% Puts your image in the center of the page, multiple other justifications are able to be done
+\centering
+    % Actually include the graphic
+    \includegraphics[width=7cm,height=6cm]{render black bgrd.png}
+    % CAPTIONS ARE VERY IMPORTANT NO FLOATING PICTURES
+    \caption{Initial render from SolidWorks, dimensions were not exact}
+    % This is how we can tell the code what picture we are referencing.
+    \label{fig:black render}
+\end{figure}
+
+% New Sub Topic
+\subsection{OnShape} 
+Once the project began, OnShape was used to model with precise measurements the components that would be used. One such component is the spine. This piece is a supporting structure and has several holes for axle pass through and for mounting areas.
+\begin{figure}[H]
+% Puts your image in the center of the page, multiple other justifications are able to be done
+\centering
+    % Actually include the graphic
+    \includegraphics[width=6cm,height=8cm]{spine onshape.png}
+    % CAPTIONS ARE VERY IMPORTANT NO FLOATING PICTURES
+    \caption{OnShape model of support spine}
+    % This is how we can tell the code what picture we are referencing.
+    \label{fig:spine}
+\end{figure}
+
+% Look a Figure
+Another design from OnShape was the base. As seen in the figure below, this houses connecting channels, as well as slots and holes for mounting the various pieces.
+\begin{figure}[H]
+\centering
+    \includegraphics[width=14cm,height=8cm]{base onshape.png}
+    \caption{Onshape model of base}
+    \label{fig:base}
+\end{figure}
+
+% New Sub-Topic
+\subsection{Eagle}
+Eagle was used to create the needed circuit diagram which would be used to print a custom PCB. The diagram shown below has all final components
+\begin{figure}[H]
+\centering
+    \includegraphics[width=12cm,height=8cm]{Circuit Diagram}
+    \caption{Circuit diagram of the roller}
+    \label{fig:circuit diagram}
+\end{figure}
+
+% New Sub-Topic
+\subsection{Lucidchart}
+The final software flowchart can be seen below in Figure \ref{fig:lucidchart}. This is very similar to the initial diagram, with only a few changes, focusing on the realignment process, as well as what would happen if the button were to be pressed while the device is in motion.
+
+\begin{figure}[H]
+\centering
+    \includegraphics[width=12cm,height=13cm]{FlowChart}
+    \caption{Software logic flowchart}
+    \label{fig:lucidchart}
+\end{figure}
+
+% New Sub-Topic
+\subsection{What was learned}
+
+Over the course of the project, many things were learned regarding the engineering process and the mindset needed to successfully produce a final product. It was discovered that not every single obstacle of a project can be predicted or planned for. For example, when it came time to 3D print components for prototyping, the individual pieces were modeled to exactly fit one another within the CAD project. The problem arose when the 3D printer, whose precision went unaccounted for, produced pieces that did not perfectly fit together. Future components were modeled with the printer's tolerance held in mind.\\
+\indent{Furthermore}, a crucial aspect of the engineering process was discovered to be the successful collaboration and cooperation between individual team members. When the team is on the same page, more work actually gets done and the project progresses in a very efficient manner. However, if the team is in disagreement about any aspect of the project, progress towards completion exponentially decreases. It is therefore important to ensure that everyone is on the same page when it comes to both what needs to be done and who needs to complete it.  
+
+% Production strategies
+\newpage
+\section{Production}
+
+% Machining at all? You should write in here
+\subsection{3D-Printing}
+The project relied heavily on 3D-printed components both for the prototypes and for the final structure. A variety of printers were used depending on availability, including the Taz Lulzbot and the Anycubic Kossel. The filament used was biodegradable PLA which, according to research done for this project, passed any of the strength and adhesion requirements needed for the groups purposes. Using .stl exports from earlier Onshape CAD work, the prints were well matched up and easily fitted together. This was the longest component of production with some prints taking upwards of 20 hours.
+
+% Do NOT weld Aluminum
+\subsection{Laser Cutting}
+Laser cutting employs a level of precision very helpful for this projects needs. The laser cutters were used to cut fitted acrylic, so that it could be glued together to form the dice enclosure. This was a very quick process, with two runs of the cutting needed, each taking only 3 minutes. The most difficult part of the laser cutting was making sure all the pieces would fit together properly, which was handled by creating a CAD document of the box, and then exporting the sketches to .dxf so CorelDraw could properly send the information to the cutters.
+
+% Yep this is where you would write
+\subsection{Soldering}
+Soldering was important both for the prototypes, as well as the final project. Initially, breadboards were used to test the electronics, but for the first fully functional prototype a perf board was used. For the final project, a combination of a perf board and custom printed pcb came together. These both required soldering, the equipment for which was found in the ITLL's electronics manufacturing center (the same place the pcb was printed). Lead-free solder and a standard pen were available.
+
+% Last but certainly not least
+\subsection{Electronics}
+
+The circuit was designed using Autodesk's EAGLE ECAD software. The final rendition of the circuit layout, and the one that was used to print the PCB, is rendered above. The largest component mounted component is the Arduino Nano. This microcontroller is responsible for running the entirety of the dice roller's programming and functionality. Most of the Arduino's pins are dedicated to the operation of the stepper motor driver, while some are dedicated inputs which read the button states. The circuit features several voltage regulators which ensure that the components-the stepper motor, stepper motor driver, and Arduino- are receiving the proper voltage levels from the single 12V power supply. Two capacitors are also included to protect the power supply from excess current draw during the motor's transient state. Finally, the stepper motor driver is located at the center of the diagram and has most of its connections running to into the Nano's pins. There are four output pins which are connected (via through hole solder connection) to the Stepper Motor. 
+
+
+
+% You can fill this out now! P.S. Maybe reword this. 
+\newpage
+\section{Final Project Decomposition}
+
+% What is the critical part called?
+\subsection{Rotation Mechanism}
+One of the most crucial aspects of the final project is the rotational mechanism that is responsible for rolling the dice. Since the entire premise of the project is to roll the dice that are within the clear housing, and since the technique used to achieve this "rolling" is the spinning of this clear housing, the mechanism responsible for this rotation must function properly. The mechanism is composed of a stepper motor, an aluminum axle, and pulley belts. The belts are wrapped around the axle and connected to the motor which, in turn, drives the entire pulley system. The combination of these elements is responsible for rotating the die-enclosing box which ultimately "rolls" the dice.
+
+% Name your other parts!
+\subsection{Dice Housing}
+The most important aspect of the dice housing is the visibility to its interior. A user must be able to view the results of a final "roll" of the dice. In order to accommodate this, clear acrylic is used for the construction of the box. The acrylic allows for a clear view of the box's contents as well as a durable structure for which the spinning can safely take place. Moreover, the box  will include a latch that allows the user to open one side of the enclosure thereby accessing its interior. A simple hinge and a box latch was used to create this door mechanism. 
+
+% More parts?
+\subsection{Support Spines}
+The supportive spines located on either side of the dice enclosure act as both physical supports for the axle and the box as well as housing for the electrical components and wiring. Both spines are 3D printed from PLA and contain the Arduino Nano, custom PCB, Stepper Motor, batteries, and wiring that operate the entire project. Each base has a hole that fits the axle in place. There are also mounting holes for the motor and locations for each of the other various electrical components to snugly fit into the frame. 
+
+\newpage
+\subsection{Base}
+The base may be lackluster, but it performs the most crucial task of connecting all the components. Everything is slotted into this base, it both holds everything together structurally as well as making the final product much more transportable due to it's wide surface area and solidness. The spines-that are the main structural support for the pulleys, motor, axle, and dice enclosure-are themselves supported by the base. The base also houses the power switch, button, and the aux port for alternative inputs.
+
+% More parts?
+\subsection{Button and Other Inputs}
+The project will feature a large, ergonomic button that spins the dice box upon pressing. The button will either rotate the box once, should the button be pressed and immediately released, or rotate the box for the duration of the press, should the user decide to hold the button down for an extended period of time. The box will always return to an initial starting position, one in which the hinged side is facing upwards. Furthermore, the dice roller will allow for an alternative button input via an aux port jack should the user have his/her own personal button that they wish to use. This custom button can be plugged into the aux port and control of the device can be carried out as normal. The only other available button on this device will be the power switch, hidden neatly on the backside.
+
+\subsection{Tower Covers}
+While the covers may not have any structural purpose, they are important components for both protecting the electronics, as well as protecting the user. These covers go over the top of the spines and fit snugly into the base. Between these covers and the spine is all the necessary mechanical and electrical components. The channels for wiring between the bases are also hidden by these covers, creating a much neater final image.
+
+\newpage
+\section{Testing and Analysis}
+
+% Past/Future
+\subsection{Results of Testing}
+
+The testing of the dice roller primarily entails checking the functionality of the various electrical components as well as the ability of the device to complete its task. The various electrical components-the stepper motor, the button inputs, and the voltage regulators-were tested to ensure that they all worked properly. Successful operation of the circuit and the motor, before it was connected to the pulley system, was an indication that each component was working properly and in accordance with its specification within the system. 
+Moreover, once the electrical components were connected to the pulley system and the box was actually spinning, the device was put through a "spin duration test" to ensure that it could function for longer periods of time without faltering in capability.
+
+% The Very End
+% Begin a new Overarching topic
+\newpage
+\section{Recommendations}
+
+% What did the community say?
+\subsection{Design Changes}
+Judges, children, people of industry, who used your project and what did they have to say? (Waiting for expo)
+
+% Time to introduce a fun little thing...
+\subsection{Group Suggestion}
+
+%...nesting Subsections!
+\subsubsection{Materials}
+The materials used are sturdy and will not be the failing factor of this product's lifespan. However, there is a potential for cheaper, and easier to put together materials. If it was possible to maintain the integrity of the product, it could be well worth it to change out the type of filament used for a cheaper alternative, or even take a step back from the 3D printing entirely. 3D printed parts took a long time to produce, and were prone to failure, causing setbacks at times where it was not afforded to the group. While both the convenience and accuracy (within the error of the printer) are undeniable, an alternative such as wood could be better structurally as well as quicker to produce. Using wood does have its drawbacks, namely the skill required to drill and shape with the accuracy required for the device. This could be overcome with good measurements and practice with the machinery required. The other materials used for the enclosure and for the axle would be difficult to replace and not result in any meaningfully beneficial changes.
+% List all your changes with meaningful topic names
+\subsubsection{Manufacturing Changes}
+The product pipeline for the device was very inefficient. Regardless of the guidelines set by the gantt chart the assembly process itself was not outlined in such detail. This lead to issues with the order of preparation, not taking into account the reliance's some parts have on each other, leading to a stall in progress. Manufacturing needs to be put in order considering what has the most down time, in the case of this project, 3D-printing. Either taking the reliance off of 3D-printing by switching the materials used, or at the very least putting more priority on it would have greatly eased off the burden that was felt approaching the deadline.
+
+% Anything else you feel is appropriate.
+\subsubsection{Role Assignment}
+The group did a very good job of communicating amongst themselves, and sharing information across rolls was very effective. However, the initial assignment of roles was inefficient. No initiative was taken, and instead the members fell into their roles as the project progressed. This had its benefits, and it seemed that most of the group members found a role that best suited what they were interested in, but the start was very slow due to this indecisiveness. If clearer goals were established earlier, and better established who would be taking the lead where, perhaps the tightness of the timeline would have felt looser.
+
+% Include Testing and Analysis in one section
+
+\newpage
+\section{Time and Monetary Budgeting}
+
+% Sub-Topic 1 Kinda a lengthy name
+\subsection{Scheduling and Project Timeline}
+
+\subsubsection{Deliverable Goals}
+This project was split into several sections, each with their own deliverable goals, so as to maintain a consistent timeline throughout the work cycle and keep a pace matching the deadline.
+\begin{figure}[H]
+\centering
+    \includegraphics[width=12cm,height=6cm]{gant top.png}
+    \includegraphics[width=16cm,height=6cm]{gant bottom.png}
+    \caption{Gantt chart with color coded sections based on deliverable goals towards the project}
+    \label{fig:sub2}
+\end{figure}
+% Sub-Topic 2 Better Name
+\newpage 
+\subsection{Fiscal Budgeting}
+\indent{This} project was given a maximum spending power of \$300 (or \$75 per group member). Below is a figure containing a complete list of bought materials and their costs.
+\begin{figure}[H]
+\centering
+    \includegraphics[width=7cm,height=8cm]{BOM.png}
+    \caption{bill of materials}
+    \label{fig:sub8}
+\end{figure}
+\newpage
+\section{Closing Statements}
+\textit{A strong argument for what went well, what didn't and how successful you think the project was.}\\
+
+Overall, the project went very well. Many things were learned throughout the engineering process and the final product was a success in that it successfully completed the task we wished it to carry out. While there were numerous hiccups along the way, it was realized that these unpredictable obstacles are simply a part of the engineering design process and, once overcome, allow the project to become better than it was before. Not only that, the overcoming of these obstacles allowed each and every one of the group members to grow as engineers and to grow as people.\\
+\indent{Successful} cooperation was crucial when it came to designing the project and carrying out the various design implementations that each group member put forth. In regards to the project itself, many aspects of the design process went very well and the project was ultimately a success. The pulley-axle design worked very well in spinning the dice held within the acrylic box. All of the components within each respective system-hardware, software, and electrical-worked very well with one another and produced a functional product that the group is very happy to present. \\
+\indent{One} notable aspect that can be improved upon in the future is the order of design/production of the individual components. During the prototyping process, the components were very frequently produced in an inefficient manner often leaving one section of development waiting on another that was lagging behind. For example, the spine of the dice roller, the component that holds all of the circuitry, was not completed before the circuitry itself was. This made it very difficult to properly test out the electrical components and to visualize their implementation within the final product since there was no reference for the system in which the circuitry would be operating within. These inefficient design orders happened rather frequently and ultimately hindered the efficiency of the design process. Besides the design efficiency, the project went extremely well.
+
+% Close and render the paper to a PDF format
+\end{document}

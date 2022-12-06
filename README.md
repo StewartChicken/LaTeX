@@ -1,0 +1,1 @@
+This repository will contain all of my LaTeX projects. I intend on using this tool for many of my future reports and documents.
